@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal zarządzania wydarzeniami</title>
+    <link href="styles.css" rel="stylesheet">
+
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="mb-4">Portal zarządzania wydarzeniami</h1>
+        
+        <nav>
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <button class="btn btn-success" id="eventsTab">Wydarzenia</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-success" id="participantsTab">Uczestnicy</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-success" id="tasksTab">Zadania</button>
+                </li>
+            </ul>
+        </nav>
+
+ 
+        <div id="eventsSection" class="section">
+            <div class="mb-5">
+                <h2>Tworzenie nowego wydarzenia</h2>
+                <form id="eventForm">
+                    <div class="mb-3">
+                        <label for="eventName" class="form-label">Nazwa wydarzenia:</label>
+                        <input type="text" id="eventName" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventDate" class="form-label">Data wydarzenia:</label>
+                        <input type="date" id="eventDate" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventTime" class="form-label">Godzina rozpoczęcia:</label>
+                        <input type="time" id="eventTime" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventLocation" class="form-label">Miejsce wydarzenia:</label>
+                        <input type="text" id="eventLocation" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventDescription" class="form-label">Opis wydarzenia:</label>
+                        <textarea id="eventDescription" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <div class="form-check mb-4">
+                        <input type="checkbox" id="eventPublic" class="form-check-input">
+                        <label for="eventPublic" class="form-check-label">Czy wydarzenie jest publiczne?</label>
+                    </div>
+                    <button type="submit" class="btn btn-success">Utwórz wydarzenie</button>
+                </form>
+            </div>
+
+            <!-- podgląd wydarzen -->
+            <div class="mb-5">
+                <h2>Dodane wydarzenia</h2>
+                <div id="eventList" class="list-group">
+                </div>
+            </div>
+        </div>
+
+        <div id="participantsSection" class="section" style="display: none;">
+            <!-- formularz do uczestnikow -->
+            <div class="mb-5">
+                <h2>Zarządzanie uczestnikami</h2>
+                <form id="participantForm" class="mb-4">
+                    <div class="mb-3">
+                        <label for="eventSelect" class="form-label">Wybór wydarzenia:</label>
+                        <select id="eventSelect" class="form-select">
+                            
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Imię i nazwisko uczestnika:</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail uczestnika:</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Numer telefonu uczestnika:</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label">Rola uczestnika:</label>
+                        <select id="role" class="form-select">
+                            <option value="prelegent">Prelegent</option>
+                            <option value="gość">Gość</option>
+                            <option value="organizator">Organizator</option>
+                        </select>
+                    </div>
+                    <div class="form-check mb-4">
+                        <input type="checkbox" id="confirmed" class="form-check-input">
+                        <label for="confirmed" class="form-check-label">Czy uczestnik potwierdził obecność?</label>
+                    </div>
+                    <button type="button" id="addParticipant" class="btn btn-primary">Dodaj uczestnika</button>
+                </form>
+
+                <div id="participantList" class="list-group">
+                </div>
+            </div>
+        </div>
+
+        <div id="tasksSection" class="section" style="display: none;">
+            <!-- formularz zadania -->
+            <div class="mb-5">
+                <h2>Zarządzanie zadaniami organizacyjnymi</h2>
+                <form id="taskForm" class="mb-4">
+                    <div class="mb-3">
+                        <label for="eventSelect" class="form-label">Wybór wydarzenia:</label>
+                        <select id="eventSelect" class="form-select">
+                            
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="taskName" class="form-label">Nazwa zadania:</label>
+                        <input type="text" id="taskName" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="taskDescription" class="form-label">Opis zadania:</label>
+                        <textarea id="taskDescription" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="taskDeadline" class="form-label">Termin realizacji:</label>
+                        <input type="date" id="taskDeadline" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="taskPriority" class="form-label">Priorytet:</label>
+                        <select id="taskPriority" class="form-select">
+                            <option value="wysoki">Wysoki</option>
+                            <option value="średni">Średni</option>
+                            <option value="niski">Niski</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="taskAssignee" class="form-label">Odpowiedzialny za zadanie:</label>
+                        <input type="text" id="taskAssignee" class="form-control" required>
+                    </div>
+                    <button type="button" id="addTask" class="btn btn-success">Dodaj zadanie</button>
+                </form>
+
+                <div id="taskList" class="list-group">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>
